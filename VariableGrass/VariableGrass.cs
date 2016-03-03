@@ -7,6 +7,21 @@ namespace VariableGrass
 {
     public class VariableGrass : Mod
     {
+        private const string MIN_ITERATIONS_KEY = "MinIterations";
+        private const string MAX_ITERATIONS_KEY = "MinIterations";
+
+        //Current day
+        private int day;
+
+        //Minimum Iterations
+        private int min;
+
+        //Maximum Iterations
+        private int max;
+
+        //Random gen
+        Random rnd = new Random();
+
         public override string Name
         {
             get { return "VariableGrass"; }
@@ -19,23 +34,23 @@ namespace VariableGrass
 
         public override string Version
         {
-            get { return "1.1"; }
+            get { return "1.2"; }
         }
 
         public override string Description
         {
-            get { return "Grass grows at variable rates - Normal"; }
+            get { return "Grass grows at variable rates"; }
         }
 
         public override void Entry()
         {
             Events.CurrentLocationChanged += Events_CurrentLocationChanged;
-        }
 
-        private int day;
-        private int min = 0;
-        private int max = 2;
-        Random rnd = new Random();
+            //Get settings
+            var settings = new IniFile("VariableGrass.ini");
+            min = int.Parse(settings.Read(MIN_ITERATIONS_KEY));
+            max = int.Parse(settings.Read(MAX_ITERATIONS_KEY));
+        }
 
         void Events_CurrentLocationChanged(GameLocation Location)
         {
