@@ -44,7 +44,7 @@ namespace VariableGrass
 
         public override void Entry()
         {
-            Events.CurrentLocationChanged += Events_CurrentLocationChanged;
+            Events.DayOfMonthChanged += Events_DayOfMonthChanged;
 
             //Get settings
             var settings = new IniFile("VariableGrass.ini");
@@ -52,20 +52,11 @@ namespace VariableGrass
             max = int.Parse(settings.Read(MAX_ITERATIONS_KEY));
         }
 
-        void Events_CurrentLocationChanged(GameLocation Location)
+        void Events_DayOfMonthChanged(int day)
         {
-            Console.WriteLine("Location changed :: " + Location.Name);
-
             if (!SGame.hasLoadedGame)
                 return;
 
-            Console.WriteLine("Current day :: " + day);
-            Console.WriteLine("Current game day :: " + SGame.dayOfMonth);
-
-            if (day == SGame.dayOfMonth)
-                return;
-
-            day = SGame.dayOfMonth;
             Console.WriteLine("Getting farm...");
             Farm farm = SGame.getLocationFromName("Farm") as Farm;
             Console.WriteLine("Got farm... GROW!");
@@ -73,6 +64,5 @@ namespace VariableGrass
             Console.WriteLine("Grow amount :: " + growAmount);
             farm.growWeedGrass(growAmount);
         }
-
     }
 }
