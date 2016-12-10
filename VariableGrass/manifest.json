@@ -1,0 +1,13 @@
+﻿{
+  "Name": "VariableGrass",
+  "Author": "dantheman999",
+  "Version": {
+    "MajorVersion": 1,
+    "MinorVersion": 2,
+    "PatchVersion": 0,
+    "Build": ""
+  },
+  "Description": "Grass grows at variable rates",
+  "UniqueID": "VariableGrass",
+  "EntryDll": "VariableGrass.dll"
+}
