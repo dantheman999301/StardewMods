@@ -1,7 +1,7 @@
 ﻿namespace VariableGrass
 {
     /// <summary>The configuration settings.</summary>
-    internal class IniFile
+    internal class ModConfig
     {
         /// <summary>The minimum grow iterations per day.</summary>
         public int MinIterations { get; set; }

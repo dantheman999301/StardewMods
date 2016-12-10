@@ -33,7 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IniFile.cs" />
+    <Compile Include="ModConfig.cs" />
     <Compile Include="VariableGrass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

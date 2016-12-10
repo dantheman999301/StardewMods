@@ -28,7 +28,7 @@ namespace VariableGrass
         public override void Entry(IModHelper helper)
         {
             // get settings
-            var config = helper.ReadConfig<IniFile>();
+            var config = helper.ReadConfig<ModConfig>();
             this.MinIterations = config.MinIterations;
             this.MaxIterations = config.MaxIterations;
 
