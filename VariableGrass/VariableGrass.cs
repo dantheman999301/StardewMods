@@ -33,17 +33,17 @@ namespace VariableGrass
             this.MaxIterations = config.MaxIterations;
 
             // register events
-            TimeEvents.DayOfMonthChanged += Events_DayOfMonthChanged;
+            TimeEvents.AfterDayStarted += this.TimeEvents_AfterDayStarted;
         }
 
 
         /*********
         ** Private methods
         *********/
-        /// <summary>The method called when the day number changes.</summary>
+        /// <summary>The method called after a new day starts.</summary>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event arguments.</param>
-        private void Events_DayOfMonthChanged(object sender, EventArgsIntChanged e)
+        private void TimeEvents_AfterDayStarted(object sender, EventArgs e)
         {
             int iterations = this.Random.Next(MinIterations, MaxIterations);
             this.Monitor.Log($"Growing grass ({iterations} iterations)...");
