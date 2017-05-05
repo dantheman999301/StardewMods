@@ -1,25 +1,74 @@
-#Stardew Valley Mod Collection by dantheman999#
+This is a collection of Stardew Valley mods by dantheman999. Currently there's only one mod available.
 
-Currently there is only one mod available.
+**Variable Grass** adds a randomised chance for more or less plant growth per day.
 
-##Variable Grass##
-Adds randomised chance for more or less plant growth per day.
+Compatible with Stardew Valley 1.11+ on Linux, Mac, and Windows.
 
-**INI Settings**
+## Contents
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Versions](#versions)
+* [Compiling the mod](#compiling-the-mod)
 
- - MinIterations - Minimum iterations of grass growing function to perform
- - MaxIterations - Maximum iterations of grass growing function to perform
+## Installation
+1. [Install the latest version of SMAPI](https://github.com/Pathoschild/SMAPI/releases).
+2. Download the source code.
+3. Build the project in Visual Studio or MonoDevelop to automatically copy the files into your mod directory.
+4. Run the game using SMAPI.
 
-----------
+## Configuration
+The mod will work fine out of the box, but you can tweak its settings by editing the `config.json`
+file if you want. These are the available settings:
 
-##Installation##
-Assuming you have SMAPI installed, just go to %appdata%\Stardew Valley\Mods and extract the DLL and ini file if there is one. 
+| setting           | what it affects
+| ----------------- | -------------------
+| `MinIterations`   | The minimum iterations of grass growing function to perform.
+| `MaxIterations`   | The maximum iterations of grass growing function to perform.
 
-You can edit the .ini file for each mod to change how it behaves.
+## Versions
+1.0:
+* Initial version.
 
-----------
+1.1:
+* Fixed not growing at correct times.
+* Slightly improved.
 
-##Developing##
-Pull the source, and you will probably notice when you try to build there are a few errors. There are two dependancies at the moment, `SMAPI` and the games EXE itself. You will need to have the game to develop. Add them to the location the references are looking at.
+1.2:
+* Added ini file.
+* Internal cleanup.
 
-[If you need XNA, download the V4 redist here](https://www.microsoft.com/en-us/download/details.aspx?id=20914)
+1.3:
+* Updated to SMAPI 1.3+ and Stardew Valley 1.1+.
+* Standardised config file.
+
+## Compiling the mod
+This mod uses the [crossplatform build config](https://github.com/Pathoschild/Stardew.ModBuildConfig#readme)
+so it can be built on Linux, Mac, and Windows without changes. See [its documentation](https://github.com/Pathoschild/Stardew.ModBuildConfig#readme)
+for troubleshooting.
+
+### Compiling the mod for testing
+To compile the mod and add it to the mods directory:
+
+1. Rebuild the project in [Visual Studio](https://www.visualstudio.com/vs/community/) or [MonoDevelop](http://www.monodevelop.com/).  
+   <small>This will compile the code and package it into the mod directory.</small>
+2. Launch the project with debugging.  
+   <small>This will start the game through SMAPI and attach the Visual Studio debugger.</small>
+
+### Compiling the mod for release
+To package the mod for release:
+
+1. Delete the game's `Mods/VariableGrass` directory.  
+   <small>(This ensures the package is clean and has default configuration.)</small>
+2. Recompile the mod per the previous section.
+3. Launch the game through SMAPI to generate the default `config.json`.
+2. Create a zip file of the game's `Mods/VariableGrass` folder. The zip name should include the
+   mod name and version. For example:
+
+   ```
+   VariableGrass-1.3.zip
+      VariableGrass/
+         VariableGrass.dll
+         VariableGrass.pdb
+         config.json
+         manifest.json
+   ```

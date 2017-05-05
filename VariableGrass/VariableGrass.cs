@@ -1,68 +1,53 @@
-﻿using StardewModdingAPI;
-using StardewModdingAPI.Inheritance;
+﻿using System;
+using StardewModdingAPI;
+using StardewModdingAPI.Events;
 using StardewValley;
-using System;
 
 namespace VariableGrass
 {
     public class VariableGrass : Mod
     {
-        private const string MIN_ITERATIONS_KEY = "MinIterations";
-        private const string MAX_ITERATIONS_KEY = "MinIterations";
+        /*********
+        ** Properties
+        *********/
+        /// <summary>The minimum number of iterations.</summary>
+        private int MinIterations;
 
-        //Current day
-        private int day;
+        /// <summary>The maximum number of iterations.</summary>
+        private int MaxIterations;
 
-        //Minimum Iterations
-        private int min;
+        /// <summary>The random number generator.</summary>
+        private readonly Random Random = new Random();
 
-        //Maximum Iterations
-        private int max;
 
-        //Random gen
-        Random rnd = new Random();
-
-        public override string Name
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
+        /// <param name="helper">Provides simplified APIs for writing mods.</param>
+        public override void Entry(IModHelper helper)
         {
-            get { return "VariableGrass"; }
+            // get settings
+            var config = helper.ReadConfig<ModConfig>();
+            this.MinIterations = config.MinIterations;
+            this.MaxIterations = config.MaxIterations;
+
+            // register events
+            TimeEvents.AfterDayStarted += this.TimeEvents_AfterDayStarted;
         }
 
-        public override string Authour
+
+        /*********
+        ** Private methods
+        *********/
+        /// <summary>The method called after a new day starts.</summary>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event arguments.</param>
+        private void TimeEvents_AfterDayStarted(object sender, EventArgs e)
         {
-            get { return "dantheman999"; }
-        }
-
-        public override string Version
-        {
-            get { return "1.2"; }
-        }
-
-        public override string Description
-        {
-            get { return "Grass grows at variable rates"; }
-        }
-
-        public override void Entry()
-        {
-            Events.DayOfMonthChanged += Events_DayOfMonthChanged;
-
-            //Get settings
-            var settings = new IniFile("VariableGrass.ini");
-            min = int.Parse(settings.Read(MIN_ITERATIONS_KEY));
-            max = int.Parse(settings.Read(MAX_ITERATIONS_KEY));
-        }
-
-        void Events_DayOfMonthChanged(int day)
-        {
-            if (!SGame.hasLoadedGame)
-                return;
-
-            Console.WriteLine("Getting farm...");
-            Farm farm = SGame.getLocationFromName("Farm") as Farm;
-            Console.WriteLine("Got farm... GROW!");
-            var growAmount = rnd.Next(min, max);
-            Console.WriteLine("Grow amount :: " + growAmount);
-            farm.growWeedGrass(growAmount);
+            int iterations = this.Random.Next(MinIterations, MaxIterations);
+            this.Monitor.Log($"Growing grass ({iterations} iterations)...");
+            Game1.getFarm().growWeedGrass(iterations);
         }
     }
 }
