@@ -2,10 +2,12 @@
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using VariableGrass.Framework;
 
 namespace VariableGrass
 {
-    public class VariableGrass : Mod
+    /// <summary>The mod entry class.</summary>
+    public class ModEntry : Mod
     {
         /*********
         ** Properties
