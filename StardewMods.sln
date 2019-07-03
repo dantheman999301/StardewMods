@@ -5,10 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VariableGrass", "VariableGrass\VariableGrass.csproj", "{47D1C504-85D6-4AFE-A5BB-54F4B66E058A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "metadata", "metadata", "{1C4B0C05-0EC3-49C9-AB83-249336313A52}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{1C4B0C05-0EC3-49C9-AB83-249336313A52}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
+		release-notes.md = release-notes.md
 	EndProjectSection
 EndProject
 Global

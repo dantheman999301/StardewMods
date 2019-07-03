@@ -5,6 +5,6 @@
   "Description": "Grass grows at variable rates",
   "UniqueID": "dantheman999.VariableGrass",
   "EntryDll": "VariableGrass.dll",
-  "MinimumApiVersion": "2.10.1",
+  "MinimumApiVersion": "2.11.2",
   "UpdateKeys": []
 }
