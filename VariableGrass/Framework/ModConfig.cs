@@ -1,4 +1,4 @@
-﻿namespace VariableGrass
+﻿namespace VariableGrass.Framework
 {
     /// <summary>The configuration settings.</summary>
     internal class ModConfig
